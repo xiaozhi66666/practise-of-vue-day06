@@ -1,28 +1,46 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="login">
+    <login msg1="邮箱登录" msg="手机登录"></login>
+    <div class="components">
+      <keep-alive> <component :is="isShow"></component></keep-alive>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import login from "./components/login.vue";
+import email from "@/views/email.vue";
+import mobile from "@/views/mobile.vue";
 export default {
-  name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    email,
+    mobile,
+    login,
+  },
+  name: "Vuedemoday06App",
+
+  data() {
+    return {
+      isShow: "email",
+    };
+  },
+
+  mounted() {},
+
+  methods: {},
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<style  scoped>
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   margin-top: 60px;
+  padding: 0 40px;
+}
+.components {
+  margin-top: 20px;
 }
 </style>
