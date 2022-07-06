@@ -1,27 +1,46 @@
 <template>
-  <div class="login">
-    <login msg1="邮箱登录" msg="手机登录"></login>
-    <div class="components">
-      <keep-alive> <component :is="isShow"></component></keep-alive>
-    </div>
+  <div>
+    <UserTable :arr="list" type="2">
+      <template #index="scope">{{ scope.row + 1 }}</template>
+      <template #name="scope">{{ scope.row.name }}</template>
+      <template #age="scope"
+        ><input type="text" v-model="scope.row.age"
+      /></template>
+      <template #img></template>
+    </UserTable>
   </div>
 </template>
 
 <script>
-import login from "./components/login.vue";
-import email from "@/views/email.vue";
-import mobile from "@/views/mobile.vue";
+import UserTable from "./views/UserTable.vue";
 export default {
   components: {
-    email,
-    mobile,
-    login,
+    UserTable,
   },
   name: "Vuedemoday06App",
 
   data() {
     return {
-      isShow: "email",
+      list: [
+        {
+          name: "小传同学",
+          age: 18,
+          headImgUrl:
+            "http://yun.itheima.com/Upload/./Images/20210303/603f2d2153241.jpg",
+        },
+        {
+          name: "小黑同学",
+          age: 25,
+          headImgUrl:
+            "http://yun.itheima.com/Upload/./Images/20210304/6040b101a18ef.jpg",
+        },
+        {
+          name: "智慧同学",
+          age: 21,
+          headImgUrl:
+            "http://yun.itheima.com/Upload/./Images/20210302/603e0142e535f.jpg",
+        },
+      ],
     };
   },
 
@@ -31,16 +50,5 @@ export default {
 };
 </script>
 
-<style  scoped>
-.login {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin-top: 60px;
-  padding: 0 40px;
-}
-.components {
-  margin-top: 20px;
-}
+<style lang="scss" scoped>
 </style>
